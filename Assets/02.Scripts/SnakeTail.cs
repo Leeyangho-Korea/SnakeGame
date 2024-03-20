@@ -56,16 +56,27 @@ public class SnakeTail : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Gem"))
-        {
-            if (!GameManager.instance.isLive)
-                return;
+        if (!GameManager.instance.isLive)
+            return;
 
+        if (collision.CompareTag("Gem"))
+        {
             SoundManager.instance.SFXOneShot(1);
             GameManager gameManger = GameManager.instance;
+            // 아이템 비활성화
             gameManger.itemManager.DisableItem(collision.gameObject);
+            // 점수 증가
             gameManger.ScoreUp();
+            // 꼬리 증가
             AddTail();
+        }
+        else if(collision.CompareTag("Feather"))
+        {
+            SoundManager.instance.SFXOneShot(2);
+            // 스피드 일시 증가
+            GetComponent<SnakeMove>().SpeedUp();
+            // 아이템 비활성화
+            GameManager.instance.itemManager.DisableItem(collision.gameObject);
         }
     }
 }

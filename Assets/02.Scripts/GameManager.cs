@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI text_RankScore;
 
     // 게임 시간 (초)
-    private float gameTime = 60;
+    private float gameTime = 30;
     // 남은 게임 시간 텍스트
     [SerializeField]
     private TextMeshProUGUI text_Time;

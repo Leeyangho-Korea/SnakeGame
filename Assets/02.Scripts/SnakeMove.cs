@@ -7,6 +7,7 @@ public class SnakeMove : MonoBehaviour
     public float speed;
     public float rotationSpeed;
     float handle = 0f;
+    private Coroutine co = null;
 
     void Update()
     {
@@ -25,5 +26,22 @@ public class SnakeMove : MonoBehaviour
 
         // 좌 우 키 입력 받은 값으로 왼쪽 오른쪽 방향 전환.
         transform.Rotate(-Vector3.forward * handle * rotationSpeed * Time.fixedDeltaTime);
+    }
+
+    public void SpeedUp()
+    {
+        if(co != null)
+        {
+            StopCoroutine(co);
+        }
+        co = StartCoroutine(TransSpeed());
+    }
+
+    private IEnumerator TransSpeed()
+    {
+        speed += 3;
+        yield return new WaitForSeconds(3f);
+        speed -= 3;
+        co = null;
     }
 }

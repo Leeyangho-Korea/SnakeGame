@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +19,7 @@ public class LobbyManager : MonoBehaviour
 
     private Coroutine co = null;
 
-    //..Å×½ºÆ®¿ë µ¥ÀÌÅÍ »èÁ¦¿©ºÎ
+    //..í…ŒìŠ¤íŠ¸ìš© ë°ì´í„° ì‚­ì œì—¬ë¶€
     public bool deleteData;
 
     private void Awake()
@@ -44,7 +44,7 @@ public class LobbyManager : MonoBehaviour
 
     public void OnClickBtnStart()
     {
-        // ¹öÆ° Áßº¹ Å¬¸¯À¸·Î ÀÎÇÑ ÄÚ·çÆ¾ Áßº¹¹æÁö
+        // ë²„íŠ¼ ì¤‘ë³µ í´ë¦­ìœ¼ë¡œ ì¸í•œ ì½”ë£¨í‹´ ì¤‘ë³µë°©ì§€
         if (co == null)
         {
             SoundManager.instance.SFXOneShot(0);
@@ -52,12 +52,12 @@ public class LobbyManager : MonoBehaviour
         }
     }
 
-    // ºñµ¿±â ¾À ÀüÈ¯À¸·Î È­¸é ÆäÀÌµå ÀÎ¾Æ¿ô ¿¬Ãâ ÁÖ±â.
+    // ë¹„ë™ê¸° ì”¬ ì „í™˜ìœ¼ë¡œ í™”ë©´ í˜ì´ë“œ ì¸ì•„ì›ƒ ì—°ì¶œ ì£¼ê¸°.
     private IEnumerator SceneTrans(string sceneName)
     {
-        // ´Ğ³×ÀÓ ¼öÁ¤ Á¦ÇÑ
+        // ë‹‰ë„¤ì„ ìˆ˜ì • ì œí•œ
         input_Nickname.interactable = false;
-        // ´Ğ³×ÀÓ ¼¼ÆÃ
+        // ë‹‰ë„¤ì„ ì„¸íŒ…
         PlayerPrefs.SetString("Nickname", input_Nickname.text);
 
         AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);

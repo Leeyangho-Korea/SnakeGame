@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,36 +19,36 @@ public class SnakeTail : MonoBehaviour
     {
         if (!GameManager.instance.isLive)
             return;
-        // ¸Ó¸®¿Í ²¿¸® »çÀÌÀÇ °Å¸® °è»ê
+        // ë¨¸ë¦¬ì™€ ê¼¬ë¦¬ ì‚¬ì´ì˜ ê±°ë¦¬ ê³„ì‚°
         float distance = ((Vector2)snakeTail.position - list_Position[0]).magnitude;
 
-        // ¸Ó¸®¿Í ²¿¸® »çÀÌÀÇ °Å¸®°¡ ¿øÀÇ Áö¸§º¸´Ù Å« °æ¿ì
+        // ë¨¸ë¦¬ì™€ ê¼¬ë¦¬ ì‚¬ì´ì˜ ê±°ë¦¬ê°€ ì›ì˜ ì§€ë¦„ë³´ë‹¤ í° ê²½ìš°
         if (distance > circleDiameter)
         {
-            // ¸Ó¸®¿¡¼­ ²¿¸® ¹æÇâÀ¸·ÎÀÇ º¤ÅÍ °è»ê
+            // ë¨¸ë¦¬ì—ì„œ ê¼¬ë¦¬ ë°©í–¥ìœ¼ë¡œì˜ ë²¡í„° ê³„ì‚°
             Vector2 direction = ((Vector2)snakeTail.position - list_Position[0]).normalized;
 
-            // »õ À§Ä¡¸¦ °è»êÇÏ¿© ¸®½ºÆ®ÀÇ ¸Ç ¾Õ¿¡ »ğÀÔ
+            // ìƒˆ ìœ„ì¹˜ë¥¼ ê³„ì‚°í•˜ì—¬ ë¦¬ìŠ¤íŠ¸ì˜ ë§¨ ì•ì— ì‚½ì…
             list_Position.Insert(0, list_Position[0] + direction * circleDiameter);
 
-            // ¸®½ºÆ®ÀÇ ¸¶Áö¸· À§Ä¡¸¦ Á¦°ÅÇÏ¿© ²¿¸®¸¦ ÀÌµ¿
+            // ë¦¬ìŠ¤íŠ¸ì˜ ë§ˆì§€ë§‰ ìœ„ì¹˜ë¥¼ ì œê±°í•˜ì—¬ ê¼¬ë¦¬ë¥¼ ì´ë™
             list_Position.RemoveAt(list_Position.Count - 1);
 
-            // ÀÌµ¿ °Å¸® °»½Å
+            // ì´ë™ ê±°ë¦¬ ê°±ì‹ 
             distance -= circleDiameter;
         }
 
-        //  ÇöÀç ²¿¸®µéÀ» ¼øÈ¸
+        //  í˜„ì¬ ê¼¬ë¦¬ë“¤ì„ ìˆœíšŒ
         for (int i = 0; i < list_SnakeTail.Count; i++)
         {
-            // ÇöÀç ²¿¸®ÀÇ À§Ä¡¸¦ ÀÌÀü À§Ä¡¿Í ÇöÀç ŸÄ¡ »çÀÌ¿¡¼­ ¼±Çü º¸°£
+            // í˜„ì¬ ê¼¬ë¦¬ì˜ ìœ„ì¹˜ë¥¼ ì´ì „ ìœ„ì¹˜ì™€ í˜„ì¬ ìœ›ì¹˜ ì‚¬ì´ì—ì„œ ì„ í˜• ë³´ê°„
             list_SnakeTail[i].position = Vector2.Lerp(list_Position[i + 1], list_Position[i], distance / circleDiameter);
         }
     }
     
     private void AddTail()
     {
-        // ²¿¸® Ãß°¡ »ı¼º ( ÇöÀç ²¿¸®ÀÇ ¸¶Áö¸· ²¿¸® À§Ä¡·Î )
+        // ê¼¬ë¦¬ ì¶”ê°€ ìƒì„± ( í˜„ì¬ ê¼¬ë¦¬ì˜ ë§ˆì§€ë§‰ ê¼¬ë¦¬ ìœ„ì¹˜ë¡œ )
         Transform tail = Instantiate(snakeTail, list_Position[list_Position.Count - 1], Quaternion.identity, transform);
         list_SnakeTail.Add(tail);
         list_Position.Add(tail.position);
@@ -63,19 +63,19 @@ public class SnakeTail : MonoBehaviour
         {
             SoundManager.instance.SFXOneShot(1);
             GameManager gameManger = GameManager.instance;
-            // ¾ÆÀÌÅÛ ºñÈ°¼ºÈ­
+            // ì•„ì´í…œ ë¹„í™œì„±í™”
             gameManger.itemManager.DisableItem(collision.gameObject);
-            // Á¡¼ö Áõ°¡
+            // ì ìˆ˜ ì¦ê°€
             gameManger.ScoreUp();
-            // ²¿¸® Áõ°¡
+            // ê¼¬ë¦¬ ì¦ê°€
             AddTail();
         }
         else if(collision.CompareTag("Feather"))
         {
             SoundManager.instance.SFXOneShot(2);
-            // ½ºÇÇµå ÀÏ½Ã Áõ°¡
+            // ìŠ¤í”¼ë“œ ì¼ì‹œ ì¦ê°€
             GetComponent<SnakeMove>().SpeedUp();
-            // ¾ÆÀÌÅÛ ºñÈ°¼ºÈ­
+            // ì•„ì´í…œ ë¹„í™œì„±í™”
             GameManager.instance.itemManager.DisableItem(collision.gameObject);
         }
     }

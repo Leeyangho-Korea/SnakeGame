@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -11,45 +11,45 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public ItemManager itemManager;
 
-    // ÆäÀÌµå ÀÌ¹ÌÁö
+    // í˜ì´ë“œ ì´ë¯¸ì§€
     [SerializeField]
     private Image fadeImage;
 
-    // °ÔÀÓ ÁøÇà ÁßÀÎÁö
+    // ê²Œì„ ì§„í–‰ ì¤‘ì¸ì§€
     public bool isLive;
 
-    // ¹öÆ° Áßº¹ Å¬¸¯À¸·Î ÀÎÇÑ ÄÚ·çÆ¾ Áßº¹ ½ÇÇà ¹æÁö
+    // ë²„íŠ¼ ì¤‘ë³µ í´ë¦­ìœ¼ë¡œ ì¸í•œ ì½”ë£¨í‹´ ì¤‘ë³µ ì‹¤í–‰ ë°©ì§€
     private Coroutine co = null;
 
-    // ²¿¸® °³¼ö
+    // ê¼¬ë¦¬ ê°œìˆ˜
     private int score = 0;
-    // ²¿¸® °³¼ö ÅØ½ºÆ®
-    [Header("°ÔÀÓ ÁßÀÎ È­¸é UI")]
+    // ê¼¬ë¦¬ ê°œìˆ˜ í…ìŠ¤íŠ¸
+    [Header("ê²Œì„ ì¤‘ì¸ í™”ë©´ UI")]
     [SerializeField]
     private TextMeshProUGUI text_Score;
 
-    // ÀÌÀü ÃÖ°í Á¡¼ö
+    // ì´ì „ ìµœê³  ì ìˆ˜
     private int rankScore = 0;
-    // ÀÌÀü ÃÖ°í Á¡¼ö ÅØ½ºÆ®
+    // ì´ì „ ìµœê³  ì ìˆ˜ í…ìŠ¤íŠ¸
     [SerializeField]
     private TextMeshProUGUI text_RankScore;
 
-    // °ÔÀÓ ½Ã°£ (ÃÊ)
+    // ê²Œì„ ì‹œê°„ (ì´ˆ)
     private float gameTime = 30;
-    // ³²Àº °ÔÀÓ ½Ã°£ ÅØ½ºÆ®
+    // ë‚¨ì€ ê²Œì„ ì‹œê°„ í…ìŠ¤íŠ¸
     [SerializeField]
     private TextMeshProUGUI text_Time;
 
-    // ÇÃ·¹ÀÌ¾î ´Ğ³×ÀÓ
+    // í”Œë ˆì´ì–´ ë‹‰ë„¤ì„
     private string nickname = null;
-    // ÇÃ·¹ÀÌ¾î ´Ğ³×ÀÓ ÅØ½ºÆ®
+    // í”Œë ˆì´ì–´ ë‹‰ë„¤ì„ í…ìŠ¤íŠ¸
     [SerializeField]
     private TextMeshPro text_nickName;
 
 
 
-    // °ÔÀÓ Á¾·á ÆË¾÷
-    [Header("°ÔÀÓ Á¾·á È­¸éUI")]
+    // ê²Œì„ ì¢…ë£Œ íŒì—…
+    [Header("ê²Œì„ ì¢…ë£Œ í™”ë©´UI")]
     [SerializeField]
     private GameObject popup_GameOver;
     [SerializeField]
@@ -109,19 +109,19 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        // °ÔÀÓ¿À¹ö ÄÚ·çÆ¾ ½ÇÇà.
+        // ê²Œì„ì˜¤ë²„ ì½”ë£¨í‹´ ì‹¤í–‰.
         StartCoroutine(GameOverRoutine());
     }
 
     private IEnumerator GameOverRoutine()
     {
         isLive = false;
-        // ³» Á¡¼ö
+        // ë‚´ ì ìˆ˜
         text_UIscore.text = score.ToString();
-        // ·©Å© Á¡¼öº¸´Ù ³ôÀ¸¸é
+        // ë­í¬ ì ìˆ˜ë³´ë‹¤ ë†’ìœ¼ë©´
         if (score >= rankScore)
         {
-            // ³» ´Ğ³×ÀÓ°ú ·©Å©Á¡¼ö ÀúÀå.
+            // ë‚´ ë‹‰ë„¤ì„ê³¼ ë­í¬ì ìˆ˜ ì €ì¥.
             PlayerPrefs.SetInt("rankScore", score);
             PlayerPrefs.SetString("rankNickname", nickname);
             text_UIrankNickname.text = nickname;
@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            // ÀúÀåÇØµ×´ø ÃÖ°í Á¡¼ö ´Ğ³×ÀÓ, Á¡¼ö Ãâ·Â
+            // ì €ì¥í•´ë’€ë˜ ìµœê³  ì ìˆ˜ ë‹‰ë„¤ì„, ì ìˆ˜ ì¶œë ¥
             text_UIrankNickname.text = PlayerPrefs.GetString("rankNickname");
             text_UIrankScore.text = rankScore.ToString();
         }
@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
         yield return null;
     }
 
-    // °ÔÀÓ ¿À¹ö ÆĞ³Î¿¡¼­ ´Ù½ÃÇÏ±â ¶Ç´Â ·Îºñ ¹öÆ° ´­·¶À» ¶§
+    // ê²Œì„ ì˜¤ë²„ íŒ¨ë„ì—ì„œ ë‹¤ì‹œí•˜ê¸° ë˜ëŠ” ë¡œë¹„ ë²„íŠ¼ ëˆŒë €ì„ ë•Œ
     public void OnClickGameOverBtn(string sceneName)
     {
         if(co == null)
@@ -147,15 +147,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // ³ª°¡±â ¹öÆ° ´­·¶À» ¶§
-    // ..ÇöÀç »ç¿ë ¾ÈÇÔ.
+    // ë‚˜ê°€ê¸° ë²„íŠ¼ ëˆŒë €ì„ ë•Œ
+    // ..í˜„ì¬ ì‚¬ìš© ì•ˆí•¨.
     public void OnClickGameExit()
     {
         SoundManager.instance.SFXOneShot(0);
         Application.Quit();
     }
 
-    // ºñµ¿±â ¾À ÀüÈ¯À¸·Î È­¸é ÆäÀÌµå ÀÎ¾Æ¿ô ¿¬Ãâ ÁÖ±â.
+    // ë¹„ë™ê¸° ì”¬ ì „í™˜ìœ¼ë¡œ í™”ë©´ í˜ì´ë“œ ì¸ì•„ì›ƒ ì—°ì¶œ ì£¼ê¸°.
     private IEnumerator SceneTrans(string sceneName)
     {
         AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);

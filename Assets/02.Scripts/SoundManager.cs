@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,15 +7,15 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance;
 
     [Header("#BGM")]
-    // BGMÀ» ½ÇÇà½ÃÄÑÁÙ AudioClip
+    // BGMì„ ì‹¤í–‰ì‹œì¼œì¤„ AudioClip
     [SerializeField]
     private AudioSource bgmSource;
 
     [Header("#SFX")]
-    // È¿°úÀ½ AudioSource
+    // íš¨ê³¼ìŒ AudioSource
     [SerializeField]
     private AudioSource sfxSource;
-    // È¿°úÀ½ ¹è¿­
+    // íš¨ê³¼ìŒ ë°°ì—´
     [SerializeField]
     public AudioClip[] sfxClips;
 

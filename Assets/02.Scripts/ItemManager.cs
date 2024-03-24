@@ -1,15 +1,15 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
     [SerializeField] GameObject[] prefab_Item;
-    // Á¨ Å¸ÀÓ
+    // ì   íƒ€ì„
     [SerializeField] List<float> genTIme_Item;
-    // ºñÈ°¼ºÈ­ µÅ ÀÖ´Â ¾ÆÀÌÅÛµé
+    // ë¹„í™œì„±í™” ë¼ ìˆëŠ” ì•„ì´í…œë“¤
     public List<GameObject> disabled_Item;
-    // Á¨ °ü¸® Å¸ÀÓ
+    // ì   ê´€ë¦¬ íƒ€ì„
     private float now_Time = 0f;
 
     void Start()
@@ -42,7 +42,7 @@ public class ItemManager : MonoBehaviour
                 disabled_Item[i].SetActive(true);
                 genTIme_Item.RemoveAt(i);
                 disabled_Item.RemoveAt(i);
-                // ¾ÆÀÌÅÛ È°¼ºÈ­ ÀÌÈÄ¿¡µµ ºñÈ°¼ºÈ­ µÈ ¾ÆÀÌÅÛµéÀÌ ¸¹´Ù¸é
+                // ì•„ì´í…œ í™œì„±í™” ì´í›„ì—ë„ ë¹„í™œì„±í™” ëœ ì•„ì´í…œë“¤ì´ ë§ë‹¤ë©´
                 if (disabled_Item.Count > 0)
                 {
                     i--;
@@ -56,7 +56,7 @@ public class ItemManager : MonoBehaviour
         _gem.SetActive(false);
         disabled_Item.Add(_gem);
         genTIme_Item.Add(Random.Range(2f, 5f));
-        // Á¨ °ü¸® Å¸ÀÓ ÃÊ±âÈ­
+        // ì   ê´€ë¦¬ íƒ€ì„ ì´ˆê¸°í™”
         now_Time = 0f;
     }
 }

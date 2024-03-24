@@ -1,41 +1,41 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public float moveRadius = 10f; // ÀÌµ¿ ¹İ°æ
+    public float moveRadius = 10f; // ì´ë™ ë°˜ê²½
 
-    // ½ÃÀÛÇÒ ¶§ È°¼ºÈ­ ½ÃÅ³ ¿ÀºêÁ§Æ®
+    // ì‹œì‘í•  ë•Œ í™œì„±í™” ì‹œí‚¬ ì˜¤ë¸Œì íŠ¸
     public bool isStartEnable;
 
     private void Start()
     {
-        // ½ÃÀÛÇÒ ¶§ È°¼ºÈ­ ÇÏÁö ¾ÊÀ¸¸é °ÔÀÓ ¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­
+        // ì‹œì‘í•  ë•Œ í™œì„±í™” í•˜ì§€ ì•Šìœ¼ë©´ ê²Œì„ ì˜¤ë¸Œì íŠ¸ ë¹„í™œì„±í™”
         if (!isStartEnable)
             GameManager.instance.itemManager.DisableItem(this.gameObject);
-        else // ½ÃÀÛÇÒ ¶§ È°¼ºÈ­ µÈ´Ù¸é ¾ÆÀÌÅÛ Àç¹èÄ¡
+        else // ì‹œì‘í•  ë•Œ í™œì„±í™” ëœë‹¤ë©´ ì•„ì´í…œ ì¬ë°°ì¹˜
             OnEnable();
     }
 
     private void OnEnable()
     {
-        // ºÎ¸ğ ¿ÀºêÁ§Æ®ÀÇ Transform ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿È
+        // ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸ì˜ Transform ì»´í¬ë„ŒíŠ¸ë¥¼ ê°€ì ¸ì˜´
         Transform parentTransform = transform.parent;
 
-        // ºÎ¸ğ ¿ÀºêÁ§Æ®ÀÇ Å©±â (·ÎÄÃ ½ºÄÉÀÏ)¸¦ °¡Á®¿È
+        // ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸ì˜ í¬ê¸° (ë¡œì»¬ ìŠ¤ì¼€ì¼)ë¥¼ ê°€ì ¸ì˜´
         Vector3 parentScale = parentTransform.localScale;
 
-        // ºÎ¸ğ ¿ÀºêÁ§Æ®ÀÇ Å©±â¸¦ ¹İ¿µÇÏ¿© ÀÌµ¿ ¹İ°æ °è»ê
+        // ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸ì˜ í¬ê¸°ë¥¼ ë°˜ì˜í•˜ì—¬ ì´ë™ ë°˜ê²½ ê³„ì‚°
         float adjustedMoveRadius = moveRadius * Mathf.Max(parentScale.x, parentScale.y, parentScale.z);
 
-        // ·£´ıÇÑ À§Ä¡·Î ÀÌµ¿
+        // ëœë¤í•œ ìœ„ì¹˜ë¡œ ì´ë™
         Vector3 randomPosition = parentTransform.position + Random.insideUnitSphere * adjustedMoveRadius;
 
-        // zÃà °ªÀº ºÎ¸ğ ¿ÀºêÁ§Æ®ÀÇ zÃà °ªÀ¸·Î ¼³Á¤ÇÏ¿© 2D Æò¸é¿¡¼­ÀÇ ·£´ı ÀÌµ¿ º¸Àå
+        // zì¶• ê°’ì€ ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸ì˜ zì¶• ê°’ìœ¼ë¡œ ì„¤ì •í•˜ì—¬ 2D í‰ë©´ì—ì„œì˜ ëœë¤ ì´ë™ ë³´ì¥
         randomPosition.z = parentTransform.position.z;
 
-        // ÀÚ½ÅÀÇ À§Ä¡¸¦ ·£´ıÇÑ À§Ä¡·Î ¼³Á¤
+        // ìì‹ ì˜ ìœ„ì¹˜ë¥¼ ëœë¤í•œ ìœ„ì¹˜ë¡œ ì„¤ì •
         transform.position = randomPosition;
     }
 }

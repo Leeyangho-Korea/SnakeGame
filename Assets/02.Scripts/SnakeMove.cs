@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ public class SnakeMove : MonoBehaviour
     {
         if (!GameManager.instance.isLive)
             return;
-        // ÁÂ ¿ì Å° ÀÔ·Â ¹Ş¾Æ±â
+        // ì¢Œ ìš° í‚¤ ì…ë ¥ ë°›ì•„ê¸°
         handle = Input.GetAxisRaw("Horizontal");
     }
 
@@ -21,10 +21,10 @@ public class SnakeMove : MonoBehaviour
     {
         if (!GameManager.instance.isLive)
             return;
-        // ·ÎÄÃ ÁÂÇ¥ ±âÁØ¿¡¼­ À§ÂÊÀ¸·Î ÀÌµ¿ ( ¾ÕÀ¸·Î ÀÌµ¿ )
+        // ë¡œì»¬ ì¢Œí‘œ ê¸°ì¤€ì—ì„œ ìœ„ìª½ìœ¼ë¡œ ì´ë™ ( ì•ìœ¼ë¡œ ì´ë™ )
         transform.Translate(Vector2.up * speed * Time.fixedDeltaTime, Space.Self);
 
-        // ÁÂ ¿ì Å° ÀÔ·Â ¹ŞÀº °ªÀ¸·Î ¿ŞÂÊ ¿À¸¥ÂÊ ¹æÇâ ÀüÈ¯.
+        // ì¢Œ ìš° í‚¤ ì…ë ¥ ë°›ì€ ê°’ìœ¼ë¡œ ì™¼ìª½ ì˜¤ë¥¸ìª½ ë°©í–¥ ì „í™˜.
         transform.Rotate(-Vector3.forward * handle * rotationSpeed * Time.fixedDeltaTime);
     }
 
